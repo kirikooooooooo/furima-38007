@@ -4,18 +4,16 @@
 
 ## users テーブル
 
-| Column              | Type    | Options               |
-| ------------------- | ------- | --------------------- |
-| email               | string  | null: false ユニーク制約|
-| encrypted_password  | string  | null: false           |
-| nickname            | string  | null: false ユニーク制約|
-| name_lastname       | string  | null: false           |
-| name_firstname      | string  | null: false           |
-| name_kana_lastname  | string  | null: false           |
-| name_kana_firstname | string  | null: false           |
-| birthdate_year      | integer | null: false           |
-| birthdate_month     | integer | null: false           |
-| birthdate_day       | integer | null: false           |
+| Column              | Type    | Options                 |
+| ------------------- | ------- | ----------------------- |
+| email               | string  | null: false,unique: true|
+| encrypted_password  | string  | null: false             |
+| nickname            | string  | null: false             |
+| name_lastname       | string  | null: false             |
+| name_firstname      | string  | null: false             |
+| name_kana_lastname  | string  | null: false             |
+| name_kana_firstname | string  | null: false             |
+| birthdate           | date    | null: false             |
 
 ### Association
 - has_many :items
@@ -27,11 +25,11 @@
 | ------------------ | ---------- | --------------------- |
 | name               | string     | null: false           |
 | explanation        | text       | null: false           |
-| category           | string     | null: false           |
-| condition          | string     | null: false           |
-| delivery_charge    | string     | null: false           |
-| shipping_area      | string     | null: false           |
-| days_to_ship       | string     | null: false           |
+| category_id        | integer    | null: false           |
+| condition_id       | integer    | null: false           |
+| delivery_charge_id | integer    | null: false           |
+| shipping_area_id   | integer    | null: false           |
+| days_to_ship_id    | integer    | null: false           |
 | price              | integer    | null: false           |
 | user               | references | null: false, foreign_key: true |
 
@@ -57,12 +55,12 @@
 
 | Column             | Type       | Options               |
 | ------------------ | ---------- | --------------------- |
-| postal_code        | integer    | null: false           |
-| prefecture         | string     | null: false           |
+| postal_code        | string     | null: false           |
+| prefecture_id      | integer    | null: false           |
 | city               | string     | null: false           |
 | address            | string     | null: false           |
-| building_name      | string     | null: false           |
-| phone_number       | integer    | null: false           |
+| building_name      | string     |                       |
+| phone_number       | string     | null: false           |
 | order              | references | null: false, foreign_key: true  |
 
 ### Association
