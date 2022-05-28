@@ -9,7 +9,7 @@ class User < ApplicationRecord
     validates :name_lastname
     validates :name_firstname
   end
-  with_options presence: true, format: { with: /\A[ァ-ヶ]+\z/, message: '全角カタカナで入力してください' } do
+  with_options presence: true, format: { with: /\A[ァ-ヶ一]+\z/, message: '全角カタカナで入力してください' } do
     validates :name_kana_lastname
     validates :name_kana_firstname
   end
