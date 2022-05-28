@@ -38,13 +38,19 @@ RSpec.describe User, type: :model do
         @user.password = 'testtest'
         @user.password_confirmation = 'testtest'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password パスワードには英字と数字の両方を含めて設定してください")
+        expect(@user.errors.full_messages).to include("Password パスワードには半角英字と半角数字の両方を含めて設定してください")
       end
       it 'passwordが数字のみでは登録できない' do
         @user.password = '123456'
         @user.password_confirmation = '123456'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password パスワードには英字と数字の両方を含めて設定してください")
+        expect(@user.errors.full_messages).to include("Password パスワードには半角英字と半角数字の両方を含めて設定してください")
+      end
+      it 'passwordが全角では登録できない' do
+        @user.password = 'パスワードテスト'
+        @user.password_confirmation = 'パスワードテスト'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password パスワードには半角英字と半角数字の両方を含めて設定してください")
       end
       it '重複したemailが存在する場合は登録できない' do
         @user.save
