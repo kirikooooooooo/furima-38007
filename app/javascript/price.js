@@ -4,8 +4,8 @@ function price(){
   const profit = document.getElementById('profit');
   
   itemprice.addEventListener('input', function(){
-    tax = itemprice.value*0.1;
-    rieki = itemprice.value-tax;
+    tax = Math.floor(itemprice.value*0.1);
+    rieki = Math.floor(itemprice.value-tax);
     addtaxprice.innerHTML = tax;
     profit.innerHTML = rieki;
   })

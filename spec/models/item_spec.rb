@@ -37,28 +37,28 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Explanation is too long (maximum is 1000 characters)")
       end
-      it 'カテゴリーが空では投稿できない' do
-        @item.category_id = ''
+      it 'カテゴリーがid:1(--)では投稿できない' do
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
-      it '商品の状態が空では投稿できない' do
-        @item.condition_id = ''
+      it '商品の状態がid:1(--)では投稿できない' do
+        @item.condition_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Condition can't be blank")
       end
-      it '配送料の負担が空では投稿できない' do
-        @item.delivery_charge_id = ''
+      it '配送料の負担がid:1(--)では投稿できない' do
+        @item.delivery_charge_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery charge can't be blank")
       end
-      it '配送元の地域が空では投稿できない' do
-        @item.prefecture_id = ''
+      it '配送元の地域がid:1(--)では投稿できない' do
+        @item.prefecture_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
-      it '発送までの日数が空では投稿できない' do
-        @item.days_to_ship_id = ''
+      it '発送までの日数がid:1(--)では投稿できない' do
+        @item.days_to_ship_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Days to ship can't be blank")
       end
@@ -74,6 +74,11 @@ RSpec.describe Item, type: :model do
       end
       it '価格が10000000以上では投稿できない' do
         @item.price = Faker::Number.between(from: 10000000, to: 100000000)
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price ¥300~¥9,999,999の間で設定してください")
+      end
+      it '価格に半角数字以外が含まれている場合は出品できない' do
+        @item.price = '５００'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price ¥300~¥9,999,999の間で設定してください")
       end
