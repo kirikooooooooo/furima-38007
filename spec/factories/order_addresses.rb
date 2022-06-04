@@ -7,5 +7,6 @@ FactoryBot.define do
     address               {Faker::Address.street_name}
     building_name         {Faker::Address.building_number}
     phone_number          {Faker::Number.between(from: 1000000000, to: 99999999999)}
+    token                 {"tok_abcdefghijk00000000000000000"}
   end
 end
