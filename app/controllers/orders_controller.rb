@@ -3,7 +3,6 @@ class OrdersController < ApplicationController
   before_action :move_to_rootpath, only:[:index, :create]
 
   def index
-    @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new
   end
 
@@ -32,12 +31,11 @@ class OrdersController < ApplicationController
   end
 
   def pay_item
-    @item = Item.find(params[:item_id])
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
       Payjp::Charge.create(
-        amount: @item.price,  # 商品の値段
-        card: order_params[:token],    # カードトークン
-        currency: 'jpy'                 # 通貨の種類（日本円）
+        amount: @item.price,
+        card: order_params[:token],
+        currency: 'jpy'
       )
   end
 end
