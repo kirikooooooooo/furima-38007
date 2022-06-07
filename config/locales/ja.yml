@@ -8,13 +8,26 @@ ja:
         name_kana_lastname: お名前カナ（名前）
         name_kana_firstname: お名前カナ（苗字）
         birthdate: 生年月日
-      item:
-        name: 商品名
-        explanation: 商品の説明
-        category_id: カテゴリー
-        condition_id: 商品の状態
-        delivery_charge_id: 配送料の負担
-        prefecture_id: 発送元の地域
-        days_to_ship_id: 発送までの日数
-        price: 販売価格
-        image: 商品画像
+      models:
+        item: 商品
+      attributes:
+        item:
+          name: 商品名
+          explanation: 商品の説明
+          category_id: カテゴリー
+          condition_id: 商品の状態
+          delivery_charge_id: 配送料の負担
+          prefecture_id: 発送元の地域
+          days_to_ship_id: 発送までの日数
+          price: 販売価格
+          image: 商品画像 
+  activemodel:
+    attributes:
+      order_address:
+        postal_code: 郵便番号
+        prefecture_id: 都道府県
+        city: 市区町村
+        address: 番地
+        building_name: 建物名
+        phone_number: 電話番号
+        token: クレジットカード情報
